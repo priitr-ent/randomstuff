@@ -12,7 +12,7 @@ class Price(TaskSet):
     def pages(self):
         self.client.get("/valuuta-hinnakiri-tallinn")
 
-class WebUsers(HttpUser)
+class WebUsers(HttpUser):
     email = "NOT_FOUND"
     password = "NOT_FOUND"
     name = "NOT_FOUND"
