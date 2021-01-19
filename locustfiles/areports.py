@@ -26,7 +26,7 @@ class Invoice(TaskSet):
 class InvoiceWithMerge(TaskSet):
     @task
     def pages(self):
-        content='[{"template":24847,"data":"https://pdfapi-test-data-bucket.s3.amazonaws.com/shopify.json"},{"template":24848,"data":"https://pdfapi-test-data-bucket.s3.amazonaws.com/shopify.json"}]'
+        content=[{"template":24847,"data":"https://pdfapi-test-data-bucket.s3.amazonaws.com/shopify.json"},{"template":24848,"data":"https://pdfapi-test-data-bucket.s3.amazonaws.com/shopify.json"}]
         self.client.post("/api/v3/templates/output?name=load-test&format=pdf&output=base64&workspace=info@actualreports.com&key=e2b73c33ebc402fcaa05205de569a43c&secret=e45c2b47cdff177ab5a4a46910fcee1e"), json=content)
 
 class WebUsers(HttpUser):
