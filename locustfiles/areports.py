@@ -23,6 +23,12 @@ class Invoice(TaskSet):
     def pages(self):
         self.client.get("/api/v3/templates/24386/output?name=LoadTesting&format=pdf&output=base64&data=https://pdfgeneratorapi.com/example-documents/34873/json&key=61e5f04ca1794253ed17e6bb986c1702&secret=68db1902ad1bb26d34b3f597488b9b28&workspace=demo.example@actualreports.com")
 
+class InvoiceWithMerge(TaskSet):
+    @task
+    def pages(self):
+        content='[{"template":24847,"data":"https://pdfapi-test-data-bucket.s3.amazonaws.com/shopify.json"},{"template":24848,"data":"https://pdfapi-test-data-bucket.s3.amazonaws.com/shopify.json"}]'
+        self.client.post("/api/v3/templates/output?name=load-test&format=pdf&output=base64&workspace=info@actualreports.com&key=e2b73c33ebc402fcaa05205de569a43c&secret=e45c2b47cdff177ab5a4a46910fcee1e"), json=content)
+
 class WebUsers(HttpUser):
     email = "NOT_FOUND"
     password = "NOT_FOUND"
@@ -30,4 +36,4 @@ class WebUsers(HttpUser):
     headers = {'content-type': 'application/json'}
     wait_time = between(1, 1)
     weight = 1
-    tasks = {Heavypdf:0, Frontpage:1, Price:1, Invoice:1}
+    tasks = {Heavypdf:0, Frontpage:0, Price:0, Invoice:0, InvoiceWithMerge:1}
