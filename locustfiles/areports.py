@@ -35,4 +35,4 @@ class WebUsers(HttpUser):
     headers = {'content-type': 'application/json'}
     wait_time = between(1, 1)
     weight = 1
-    tasks = {Heavypdf:1, Frontpage:1, Price:1, Invoice:1, InvoiceWithMerge:1}
+    tasks = {Heavypdf:1, Frontpage:2, Price:0, Invoice:6, InvoiceWithMerge:0}
